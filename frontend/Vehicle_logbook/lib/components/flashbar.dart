@@ -278,7 +278,7 @@ class Pop {
     );
   }
 
-  static void errorTop(BuildContext context, String message, IconData icon) {
+  static void errorTop(BuildContext context, String message) {
     showFlash(
       context: context,
       duration: Duration(milliseconds: 3000),
@@ -293,11 +293,11 @@ class Pop {
           position: FlashPosition.top,
           child: FlashBar(
             shouldIconPulse: true,
-            icon: Icon(
-              icon,
-              size: 20.0,
-              color: Colors.white,
-            ),
+            // icon: Icon(
+            //   icon,
+            //   size: 20.0,
+            //   color: Colors.white,
+            // ),
             content: Text(message,
                 style: TextStyle(
                   fontSize: l,

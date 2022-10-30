@@ -1,46 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_logbook/components/relative_scale.dart';
-import 'package:vehicle_logbook/router/left_open_screen.dart';
 import 'package:vehicle_logbook/router/right_open_screen.dart';
-import 'package:vehicle_logbook/screens/UserHomeComplete.dart';
 import 'package:vehicle_logbook/screens/registration/credential_screen.dart';
 import 'package:vehicle_logbook/utils/style_sheet.dart';
-import 'package:http/http.dart' as http;
 
-import '../../components/flashbar.dart';
+import '../ServiceHomeComplete.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ServiceLoginScreen extends StatefulWidget {
+  const ServiceLoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ServiceLoginScreen> createState() => _ServiceLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with RelativeScale {
-  TextEditingController ETname = new TextEditingController();
-  TextEditingController ETPassword = new TextEditingController();
+class _ServiceLoginScreenState extends State<ServiceLoginScreen>
+    with RelativeScale {
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  void searchUser(String userId, String password) async {
-    Uri uri = Uri.parse(
-        "https://online-vehicle-log-book.herokuapp.com/user/getUser/${userId}/${password}");
-
-    final response = await http.get(uri, headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    });
-
-    if (response.statusCode == 200) {
-      print(response.body);
-      if (response.body == true) {
-        print(response.body);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => UserHomePage()));
-      } else {
-        Pop.errorTop(context, "Something wrong");
-        print(response.body);
-      }
-    } else {
-      throw Exception('Failed to search vehicle.');
-    }
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -152,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> with RelativeScale {
                           padding:
                               EdgeInsets.fromLTRB(sy(0), sy(0), sy(3), sy(0)),
                           child: TextField(
-                            controller: ETname,
+                            //controller: ETname,
                             keyboardType: TextInputType.name,
                             textAlign: TextAlign.left,
                             decoration: InputDecoration(
@@ -202,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> with RelativeScale {
                             padding:
                                 EdgeInsets.fromLTRB(sy(0), sy(0), sy(3), sy(0)),
                             child: TextField(
-                              controller: ETPassword,
+                              //controller: ETpassword,
                               keyboardType: TextInputType.visiblePassword,
                               textAlign: TextAlign.left,
                               decoration: InputDecoration(
@@ -266,15 +248,8 @@ class _LoginScreenState extends State<LoginScreen> with RelativeScale {
                       ),
                     ),
                     onPressed: () {
-                      searchUser(ETname.text, ETPassword.text);
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UserHomePage()));
-                      // if (flag == 1) {
-                      // Navigator.push(
-                      //     context, RightOpenScreen(widget: UserHomePage()));
-                      // }
+                          context, RightOpenScreen(widget: ServiceHomePage()));
                       // register(
                       //     name: ETname,
                       //     email: ETemail,

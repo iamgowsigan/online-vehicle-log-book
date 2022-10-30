@@ -7,7 +7,6 @@ mixin RelativeScale {
   double get screenHeight => _screenHeight!;
   double get screenWidth => _screenWidth!;
 
-
   initRelativeScaler(BuildContext context) {
     var size = MediaQuery.of(context).size;
     _screenHeight = size.height;
@@ -28,12 +27,12 @@ mixin RelativeScale {
 }
 
 typedef _RelativeBuilderFunction = Widget Function(
-    BuildContext,
-    double,
-    double,
-    double Function(double),
-    double Function(double),
-    );
+  BuildContext,
+  double,
+  double,
+  double Function(double),
+  double Function(double),
+);
 
 class RelativeBuilder extends StatelessWidget {
   final double scale;
